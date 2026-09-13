@@ -1,6 +1,6 @@
 "use client";
 import useBookingStore from "@/src/features/booking/store/store";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import createBookingEvent from "@/src/features/booking/modules/createBookingEvent";
 import { useSession } from "next-auth/react";
 import SubmitListItem from "./SubmitListItem";

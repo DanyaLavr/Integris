@@ -3,7 +3,8 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { useState } from "react";
 import { loginSchema, TLoginInput } from "@/src/shared/config/authSchemas";
 import ShowButton from "@/src/shared/ui/ShowButton";

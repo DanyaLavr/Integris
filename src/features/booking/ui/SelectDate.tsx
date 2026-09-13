@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import useBookingStore from "../store/store";
 import DateCalendar from "./DateCalendar";
 import TimeSlotPicker from "./TimeSlotPicker";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { ROUTES } from "@/src/shared/config/routes";
 import WeekDaysList from "./WeekDaysList";
 import MonthPicker from "./MonthPicker";
