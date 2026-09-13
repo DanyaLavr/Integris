@@ -4,8 +4,10 @@ import { Providers } from "./providers";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/src/shared/config/authConfig";
 import { getMessages, getTimeZone, setRequestLocale } from "next-intl/server";
+
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { hasLocale } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +23,7 @@ export default async function RootLayout({
 }>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
@@ -32,7 +34,7 @@ export default async function RootLayout({
     getServerSession(authConfig),
   ]);
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className="min-h-screen flex flex-col">
         <Providers
           session={session}

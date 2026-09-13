@@ -9,7 +9,7 @@ const STATS = [
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-amber-50">
+    <section className="relative overflow-hidden bg-amber-50 ">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-amber-100/70 blur-3xl"
