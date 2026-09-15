@@ -25,7 +25,11 @@ const Header = async () => {
   return (
     <header className="sticky top-0 z-50">
       <div className="mx-auto flex gap-8 max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-semibold ">
+        <Link
+          id="logo"
+          href="/"
+          className="flex items-center gap-2 font-semibold "
+        >
           Integris
         </Link>
 
@@ -78,12 +82,14 @@ const Header = async () => {
             <nav className="font-bold">
               <ul className="grid gap-6 text-2xl text-center">
                 {navItems.map((elem) => (
-                  <li key={elem} className="capitalize ">
+                  <li data-mobile-menu key={elem} className="capitalize ">
                     <Link href={`/#${elem}`}>{tnav(elem)}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link href="/contacts">{t("contacts")}</Link>
+                  <Link data-mobile-menu href="/contacts">
+                    {t("contacts")}
+                  </Link>
                 </li>
               </ul>
             </nav>

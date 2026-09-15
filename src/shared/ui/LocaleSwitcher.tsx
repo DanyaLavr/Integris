@@ -25,7 +25,7 @@ const LocaleSwitcher = () => {
     <div className="relative">
       <button
         onClick={() => setIsActive((prev) => !prev)}
-        className={`flex gap-3 rounded-xl border border-stone-600 content-center py-1 px-3 capitalize ${isActive ? "rounded-b-none border-b-0 " : ""}`}
+        className={`flex gap-3 bg-white rounded-xl border border-stone-600 content-center py-1 px-3 capitalize ${isActive ? "rounded-b-none border-b-0 " : ""}`}
       >
         <p className="text-black">
           {languages[locale as keyof typeof languages]}

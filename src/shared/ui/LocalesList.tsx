@@ -29,7 +29,7 @@ const LocalesList = ({
     <ul
       ref={ref}
       //${isActive ? "flex" : "hidden"}
-      className={`flex flex-col bg-beige absolute w-full text-center rounded-b-xl border border-t-0 border-stone-600  `}
+      className={`flex flex-col bg-white absolute w-full text-center rounded-b-xl border border-t-0 border-stone-600  `}
     >
       {Object.entries(languages).map(([key, lang]) => {
         if (key === locale) return;

@@ -12,16 +12,27 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
     if (!isRendered) setIsRendered(true);
     else setIsOpen(false);
   };
+  const handleTransitionEnd = () => {
+    if (!isOpen) setIsRendered(false);
+  };
   useEffect(() => {
     if (isRendered) {
       const raf = requestAnimationFrame(() => setIsOpen(true));
       return () => cancelAnimationFrame(raf);
     }
   }, [isRendered, setIsOpen]);
-  const handleTransitionEnd = () => {
-    if (!isOpen) setIsRendered(false);
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleCloseModal = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const logo = target.closest("#logo");
+      const link = target.closest("[data-mobile-nav]");
 
+      if (link || logo) setIsOpen(false);
+    };
+    document.addEventListener("click", handleCloseModal);
+    return () => document.addEventListener("click", handleCloseModal);
+  }, [isOpen]);
   return (
     <div>
       <BurgerMenu isOpen={isOpen} setIsOpen={toggleMenu} />
@@ -32,8 +43,10 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
             id="mobile-menu"
             onTransitionEnd={handleTransitionEnd}
             onClick={(e) => {
+              console.log(e.target);
               const link = (e.target as HTMLElement).closest("a");
-              if (link) {
+              const logo = (e.target as HTMLElement).closest("#logo");
+              if (link || logo) {
                 toggleMenu();
               }
             }}
