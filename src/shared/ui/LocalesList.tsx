@@ -41,7 +41,7 @@ const LocalesList = ({
             <button
               type="button"
               onClick={() => switchLocale(key)}
-              className="block w-full capitalize"
+              className="block w-full capitalize cursor-pointer"
             >
               {lang}
             </button>

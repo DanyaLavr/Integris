@@ -36,12 +36,22 @@ const Header = async () => {
         <nav className="hidden items-center text-sm font-medium  md:flex">
           <ul className="flex gap-4">
             {navItems.map((elem) => (
-              <li key={elem} className="capitalize">
-                <Link href={`/#${elem}`}>{tnav(elem)}</Link>
+              <li key={elem} className="capitalize ">
+                <Link
+                  className="transition relative after:rounded-4xl after:absolute after:block after:h-0.5 after:bg-brand-green after:transition-[width] after:w-0  hover:text-brand-green hover:after:w-full focus-visible:text-brand-green focus-visible:after:w-full"
+                  href={`/#${elem}`}
+                >
+                  {tnav(elem)}
+                </Link>
               </li>
             ))}
             <li>
-              <Link href="/contacts">{t("contacts")}</Link>
+              <Link
+                className="transition relative after:rounded-4xl after:absolute after:block after:h-0.5 after:bg-brand-green after:transition-[width] after:w-0  hover:text-brand-green hover:after:w-full focus-visible:text-brand-green focus-visible:after:w-full"
+                href="/contacts"
+              >
+                {t("contacts")}
+              </Link>
             </li>
           </ul>
         </nav>
