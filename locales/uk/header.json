@@ -1,4 +1,14 @@
 {
   "login": "Увійти",
-  "bookAppointment": "Записатися"
+  "bookAppointment": "Записатися",
+  "contacts": "Контакти",
+  "nav": {
+    "about": "Про нас",
+    "areas": "Напрями",
+    "programs": "Програми",
+    "technology": "Технології",
+    "team": "Команда",
+    "space": "Простір",
+    "journal": "Журнал"
+  }
 }

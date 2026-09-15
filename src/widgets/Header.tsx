@@ -6,6 +6,7 @@ import { ROUTES } from "../shared/config/routes";
 import { LogoutButton } from "../shared/ui/LogoutButton";
 import { getTranslations } from "next-intl/server";
 import LocaleSwitcher from "../shared/ui/LocaleSwitcher";
+import MobileMenu from "../shared/ui/MobileMenu";
 
 const navItems = [
   "about",
@@ -20,25 +21,23 @@ const navItems = [
 const Header = async () => {
   const session = await getServerSession(authConfig);
   const t = await getTranslations("header");
+  const tnav = await getTranslations("header.nav");
   return (
     <header className="sticky top-0 z-50">
       <div className="mx-auto flex gap-8 max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-semibold text-stone-900"
-        >
+        <Link href="/" className="flex items-center gap-2 font-semibold ">
           Integris
         </Link>
 
-        <nav className="hidden items-center text-sm font-medium text-stone-600 md:flex">
+        <nav className="hidden items-center text-sm font-medium  md:flex">
           <ul className="flex gap-4">
             {navItems.map((elem) => (
               <li key={elem} className="capitalize">
-                <a href={`#${elem}`}>{elem}</a>
+                <Link href={`/#${elem}`}>{tnav(elem)}</Link>
               </li>
             ))}
             <li>
-              <Link href="/contacts">Contacts</Link>
+              <Link href="/contacts">{t("contacts")}</Link>
             </li>
           </ul>
         </nav>
@@ -75,12 +74,20 @@ const Header = async () => {
               {t("bookAppointment")}
             </Link>
           </div>
-
-          <div className="grid gap-0.5 border border-stone-900 rounded-full py-3 px-2 sm:px-1.5 sm:gap-1 md:hidden">
-            <span className="block w-6 h-1 bg-stone-900 rounded-2xl sm:w-10 sm:h-1.5"></span>
-            <span className="block w-6 h-1 bg-stone-900 rounded-2xl sm:w-10 sm:h-1.5"></span>
-            <span className="block w-6 h-1 bg-stone-900 rounded-2xl sm:w-10 sm:h-1.5"></span>
-          </div>
+          <MobileMenu>
+            <nav className="font-bold">
+              <ul className="grid gap-6 text-2xl text-center">
+                {navItems.map((elem) => (
+                  <li key={elem} className="capitalize ">
+                    <Link href={`/#${elem}`}>{tnav(elem)}</Link>
+                  </li>
+                ))}
+                <li>
+                  <Link href="/contacts">{t("contacts")}</Link>
+                </li>
+              </ul>
+            </nav>
+          </MobileMenu>
         </div>
       </div>
     </header>

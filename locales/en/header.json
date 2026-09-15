@@ -1,4 +1,14 @@
 {
   "login": "Log in",
-  "bookAppointment": "Book appointment"
+  "bookAppointment": "Book appointment",
+  "contacts": "Contacts",
+  "nav": {
+    "about": "About",
+    "areas": "Areas",
+    "programs": "Programs",
+    "technology": "Technology",
+    "team": "Team",
+    "space": "Space",
+    "journal": "Journal"
+  }
 }

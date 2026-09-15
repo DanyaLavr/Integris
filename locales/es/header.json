@@ -1,4 +1,14 @@
 {
   "login": "Entrar",
-  "bookAppointment": "Reservar cita"
+  "bookAppointment": "Reservar cita",
+  "contacts": "Contacto",
+  "nav": {
+    "about": "Nosotros",
+    "areas": "Áreas",
+    "programs": "Programas",
+    "technology": "Tecnología",
+    "team": "Equipo",
+    "space": "Espacio",
+    "journal": "Diario"
+  }
 }

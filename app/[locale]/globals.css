@@ -3,6 +3,13 @@
 html {
   scroll-behavior: auto;
 }
+
+@theme {
+  --color-black: #282927;
+  --color-white: #f4f4f1;
+  --color-beige: #dcd8c9;
+  --color-brand-green: #738064;
+}
 @layer components {
   /* Заполненная кнопка — только цвет/состояния, паддинги/rounded/gap пишешь сам */
   .btn-primary {

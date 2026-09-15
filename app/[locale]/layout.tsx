@@ -34,8 +34,11 @@ export default async function RootLayout({
     getServerSession(authConfig),
   ]);
   return (
-    <html lang={locale}>
-      <body className="min-h-screen flex flex-col">
+    <html
+      className="bg-beige text-black has-[#mobile-menu]:overflow-hidden "
+      lang={locale}
+    >
+      <body className="min-h-screen flex flex-col has-[\#mobile-menu]:overflow-hidden">
         <Providers
           session={session}
           messages={messages}
