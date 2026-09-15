@@ -21,6 +21,22 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
       return () => cancelAnimationFrame(raf);
     }
   }, [isRendered, setIsOpen]);
+
+  useEffect(() => {
+    if (!isRendered) return;
+
+    const body = document.body;
+    const scroll = window.scrollY;
+
+    body.style.position = "fixed";
+    body.style.top = `-${scroll}px`;
+
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      window.scrollTo(0, scroll);
+    };
+  }, [isRendered]);
   useEffect(() => {
     if (!isOpen) return;
     const handleCloseModal = (e: MouseEvent) => {
