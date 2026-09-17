@@ -4,6 +4,11 @@ html {
   scroll-behavior: auto;
 }
 
+a:focus,
+a:focus-visible {
+  outline-style: none;
+}
+
 @theme {
   --color-black: #282927;
   --color-white: #f4f4f1;
@@ -21,6 +26,13 @@ html {
   );
 }
 @layer components {
+  .container {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+
+  .title-h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
   /* Заполненная кнопка — только цвет/состояния, паддинги/rounded/gap пишешь сам */
   .btn-primary {
     @apply bg-brand-green text-amber-50 font-semibold transition-colors cursor-pointer hover:bg-brand-green-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green-light focus-visible:ring-offset-2;

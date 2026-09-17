@@ -66,7 +66,7 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
                 toggleMenu();
               }
             }}
-            className={`fixed w-full h-full bg-white translate-x-full transition pt-18 sm:pt-20.5 ${isOpen ? "translate-x-0!" : ""}`}
+            className={`fixed top-0 w-full h-full bg-white translate-x-full transition pt-18 sm:pt-20.5 ${isOpen ? "translate-x-0!" : ""}`}
           >
             {children}
           </div>,
