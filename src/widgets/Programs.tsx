@@ -34,7 +34,7 @@ const Programs = () => {
       id="programs"
       className="scroll-mt-20 bg-white py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <SectionHeading
           eyebrow="Programs"
           title="Personal programs, not procedure lists"
