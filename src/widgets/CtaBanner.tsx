@@ -3,7 +3,7 @@ import Link from "next/link";
 const CtaBanner = () => {
   return (
     <section className="bg-brand-green py-16 text-white md:py-20">
-      <div className="container flex flex-col items-center gap-6 text-center sm:gap-7">
+      <div className="container--custom flex flex-col items-center gap-6 text-center sm:gap-7">
         <h2 className="title-h2 max-w-2xl">
           Ready to start your personalized journey?
         </h2>

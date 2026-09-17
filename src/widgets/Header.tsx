@@ -24,7 +24,7 @@ const Header = async () => {
   const tnav = await getTranslations("header.nav");
   return (
     <header className="sticky top-0 z-50">
-      <div className="container flex gap-8 items-center justify-between py-4">
+      <div className="container--custom flex gap-8 items-center justify-between py-4">
         <Link
           id="logo"
           href="/"

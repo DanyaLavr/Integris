@@ -20,7 +20,7 @@ const legalNav = [
 const Footer = () => {
   return (
     <footer className="bg-black text-white">
-      <div className="container py-14 md:py-16 lg:py-20">
+      <div className="container--custom py-14 md:py-16 lg:py-20">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <span className="text-xl font-semibold tracking-wide">
@@ -136,7 +136,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} INTEGRIS. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} INTEGRIS. All rights reserved.
+          </p>
           <p>Alicante &middot; Costa Blanca &middot; Spain</p>
         </div>
       </div>

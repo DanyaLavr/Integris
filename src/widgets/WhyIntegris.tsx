@@ -30,7 +30,7 @@ const reasons = [
 const WhyIntegris = () => {
   return (
     <section className="bg-white py-16 md:py-20 lg:py-28">
-      <div className="container">
+      <div className="container--custom">
         <SectionHeading
           eyebrow="Why INTEGRIS"
           title="A different kind of care"

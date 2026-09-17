@@ -38,7 +38,7 @@ const About = () => {
       id="about"
       className="scroll-mt-20 bg-white py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:aspect-[16/10] lg:aspect-[4/5]">
             <Image

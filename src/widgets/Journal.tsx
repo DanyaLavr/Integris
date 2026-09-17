@@ -26,7 +26,7 @@ const Journal = () => {
       id="journal"
       className="scroll-mt-20 bg-white py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             eyebrow="Journal"

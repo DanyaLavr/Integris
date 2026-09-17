@@ -43,7 +43,7 @@ const Areas = () => {
       id="areas"
       className="scroll-mt-20 bg-beige py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <SectionHeading
           eyebrow="Our Areas"
           title="Where we focus our expertise"

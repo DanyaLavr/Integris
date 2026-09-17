@@ -15,7 +15,7 @@ const Space = () => {
       id="space"
       className="scroll-mt-20 bg-beige py-16 md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <SectionHeading
           eyebrow="Our Space"
           title="A space designed around you"

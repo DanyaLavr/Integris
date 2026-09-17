@@ -13,7 +13,7 @@ const Hero = () => {
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
-      <div className="container relative z-10 pb-14 pt-32 sm:py-32">
+      <div className="container--custom relative z-10 pb-14 pt-32 sm:py-32">
         <span className="inline-block text-xs font-semibold uppercase tracking-[0.3em] text-white/70 sm:text-sm">
           Alicante, Spain
         </span>

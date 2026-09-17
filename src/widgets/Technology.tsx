@@ -46,7 +46,7 @@ const Technology = () => {
       id="technology"
       className="scroll-mt-20 bg-black py-16 text-white md:py-20 lg:py-28"
     >
-      <div className="container">
+      <div className="container--custom">
         <SectionHeading
           eyebrow="Technology"
           title="Our Technology"
