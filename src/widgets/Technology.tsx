@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/src/shared/ui/SectionHeading";
 
@@ -40,6 +39,14 @@ const technologies = [
   },
 ];
 
+const getRetinaSrcSet = (src: string) => {
+  const dotIndex = src.lastIndexOf(".");
+  const base = src.slice(0, dotIndex);
+  const ext = src.slice(dotIndex);
+
+  return `${base}${ext} 1x, ${base}@2x${ext} 2x, ${base}@3x${ext} 3x`;
+};
+
 const Technology = () => {
   return (
     <section
@@ -61,11 +68,12 @@ const Technology = () => {
               className="overflow-hidden rounded-2xl bg-white/5 transition-colors hover:bg-white/10"
             >
               <div className="relative aspect-[4/3] w-full">
-                <Image
+                <img
                   src={tech.image}
+                  srcSet={getRetinaSrcSet(tech.image)}
                   alt={tech.name}
-                  fill
-                  className="object-cover"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
               <div className="p-5">
