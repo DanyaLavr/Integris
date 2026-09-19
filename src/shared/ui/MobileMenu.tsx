@@ -26,15 +26,37 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
     return () => cancelAnimationFrame(raf);
   }, [isRendered]);
 
+  const getScroller = () =>
+    (document.scrollingElement as HTMLElement | null) ||
+    document.documentElement;
+
+  const jumpTo = (y: number) => {
+    getScroller().scrollTop = y;
+  };
+
+  const animateScrollTo = (toY: number, duration = 600) => {
+    const scroller = getScroller();
+    const fromY = scroller.scrollTop;
+    const diff = toY - fromY;
+    if (Math.abs(diff) < 1) return;
+
+    const start = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      scroller.scrollTop = fromY + diff * eased;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
   useEffect(() => {
     if (!isRendered) return;
 
     const body = document.body;
-    const html = document.documentElement;
-    const scroll = window.scrollY;
+    const scroll = getScroller().scrollTop;
     scrollYRef.current = scroll;
 
-    html.style.scrollBehavior = "auto";
     body.style.position = "fixed";
     body.style.width = "100%";
     body.style.overflow = "hidden";
@@ -52,21 +74,21 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
       isLeavingPageRef.current = false;
 
       if (leaving) {
-        window.scrollTo({ top: 0, behavior: "auto" });
-        html.style.scrollBehavior = "smooth";
+        jumpTo(0);
         return;
       }
 
-      window.scrollTo({ top: scrollYRef.current, behavior: "auto" });
+      jumpTo(scrollYRef.current);
 
       if (hash) {
         requestAnimationFrame(() => {
-          const target = document.querySelector(hash);
-          target?.scrollIntoView({ behavior: "smooth", block: "start" });
-          html.style.scrollBehavior = "smooth";
+          const target = document.querySelector(hash) as HTMLElement | null;
+          if (target) {
+            const y =
+              target.getBoundingClientRect().top + getScroller().scrollTop;
+            animateScrollTo(y);
+          }
         });
-      } else {
-        html.style.scrollBehavior = "smooth";
       }
     };
   }, [isRendered]);
