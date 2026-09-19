@@ -26,18 +26,22 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
     if (!isRendered) return;
 
     const body = document.body;
+    const html = document.documentElement;
     const scroll = window.scrollY;
 
+    html.style.scrollBehavior = "auto";
     body.style.position = "fixed";
     body.style.overflow = "hidden";
-    // body.style.top = `-${scroll}px`;
+    body.style.top = `-${scroll}px`;
 
     return () => {
+      html.style.scrollBehavior = "smooth";
+
       body.style.position = "";
       body.style.overflow = "";
 
-      // body.style.top = "";
-      // window.scrollTo(0, scroll);
+      body.style.top = "";
+      window.scrollTo(0, scroll);
     };
   }, [isRendered]);
   useEffect(() => {
