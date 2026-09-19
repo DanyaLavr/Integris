@@ -93,7 +93,9 @@ const Header = async () => {
               <ul className="grid gap-6 text-2xl text-center">
                 {navItems.map((elem) => (
                   <li data-mobile-menu key={elem} className="capitalize ">
-                    <Link href={`/#${elem}`}>{tnav(elem)}</Link>
+                    <Link scroll={false} href={`/#${elem}`}>
+                      {tnav(elem)}
+                    </Link>
                   </li>
                 ))}
                 <li>
