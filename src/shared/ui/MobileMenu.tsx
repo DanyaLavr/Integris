@@ -29,12 +29,15 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
     const scroll = window.scrollY;
 
     body.style.position = "fixed";
-    body.style.top = `-${scroll}px`;
+    body.style.overflow = "hidden";
+    // body.style.top = `-${scroll}px`;
 
     return () => {
       body.style.position = "";
-      body.style.top = "";
-      window.scrollTo(0, scroll);
+      body.style.overflow = "";
+
+      // body.style.top = "";
+      // window.scrollTo(0, scroll);
     };
   }, [isRendered]);
   useEffect(() => {
