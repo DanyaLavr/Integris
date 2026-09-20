@@ -92,16 +92,12 @@ const Header = async () => {
             <nav className="font-bold">
               <ul className="grid gap-6 text-2xl text-center">
                 {navItems.map((elem) => (
-                  <li data-mobile-menu key={elem} className="capitalize ">
-                    <Link scroll={false} href={`/#${elem}`}>
-                      {tnav(elem)}
-                    </Link>
+                  <li key={elem} className="capitalize ">
+                    <Link href={`/#${elem}`}>{tnav(elem)}</Link>
                   </li>
                 ))}
                 <li>
-                  <Link data-mobile-menu href="/contacts">
-                    {t("contacts")}
-                  </Link>
+                  <Link href="/contacts">{t("contacts")}</Link>
                 </li>
               </ul>
             </nav>

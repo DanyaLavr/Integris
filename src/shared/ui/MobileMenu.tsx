@@ -10,7 +10,8 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
 
   const scrollYRef = useRef(0);
   const pendingHashRef = useRef<string | null>(null);
-  const isLeavingPageRef = useRef(false);
+  const isLeavingRef = useRef(false);
+  const forceTopRef = useRef(false);
 
   const openMenu = () => setIsRendered(true);
   const closeMenu = () => setIsOpen(false);
@@ -26,26 +27,40 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
     return () => cancelAnimationFrame(raf);
   }, [isRendered]);
 
-  const getScroller = () =>
-    (document.scrollingElement as HTMLElement | null) ||
-    document.documentElement;
+  const getScroller = () => document.documentElement;
 
   const jumpTo = (y: number) => {
-    getScroller().scrollTop = y;
+    const html = document.documentElement;
+    const prevBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+    html.scrollTop = y;
+    document.body.scrollTop = y;
+    html.style.scrollBehavior = prevBehavior;
   };
 
   const animateScrollTo = (toY: number, duration = 600) => {
+    const html = document.documentElement;
+    const prevBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+
     const scroller = getScroller();
     const fromY = scroller.scrollTop;
     const diff = toY - fromY;
-    if (Math.abs(diff) < 1) return;
+    if (Math.abs(diff) < 1) {
+      html.style.scrollBehavior = prevBehavior;
+      return;
+    }
 
     const start = performance.now();
     const step = (now: number) => {
       const t = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - t, 3);
       scroller.scrollTop = fromY + diff * eased;
-      if (t < 1) requestAnimationFrame(step);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        html.style.scrollBehavior = prevBehavior;
+      }
     };
     requestAnimationFrame(step);
   };
@@ -68,13 +83,19 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
       body.style.overflow = "";
       body.style.top = "";
 
+      void body.offsetHeight;
+
       const hash = pendingHashRef.current;
       pendingHashRef.current = null;
-      const leaving = isLeavingPageRef.current;
-      isLeavingPageRef.current = false;
+      const leaving = isLeavingRef.current;
+      isLeavingRef.current = false;
+      const forceTop = forceTopRef.current;
+      forceTopRef.current = false;
 
       if (leaving) {
-        jumpTo(0);
+        if (forceTop) {
+          jumpTo(0);
+        }
         return;
       }
 
@@ -104,16 +125,28 @@ const MobileMenu = ({ children }: { children: ReactNode }) => {
       const url = new URL(link.href, window.location.href);
       const samePage = url.pathname === window.location.pathname;
 
-      if (url.hash && samePage) {
-        pendingHashRef.current = url.hash;
-      } else if (!url.hash) {
-        isLeavingPageRef.current = true;
+      if (samePage) {
+        if (url.hash) {
+          pendingHashRef.current = url.hash;
+        }
+      } else {
+        isLeavingRef.current = true;
+        if (!url.hash) {
+          forceTopRef.current = true;
+        }
       }
     } else if (logo) {
-      isLeavingPageRef.current = window.location.pathname !== "/";
+      const isHome = window.location.pathname === "/";
+      isLeavingRef.current = !isHome;
+      forceTopRef.current = !isHome;
     }
 
-    closeMenu();
+    if (isLeavingRef.current) {
+      setIsOpen(false);
+      setIsRendered(false);
+    } else {
+      closeMenu();
+    }
   }, []);
 
   return (
